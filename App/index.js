@@ -1,4 +1,6 @@
 import React from 'react'
 import { View } from "react-native"
 import Home from "./screens/Home"
-export default () => <Home/>
+import Options from "./screens/options"
+import Navigation from "./config/Navigation"
+export default () => <Navigation />

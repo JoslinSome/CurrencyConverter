@@ -1,72 +1,47 @@
-import React from 'react'
-import { View, SafeAreaView, StyleSheet, ScrollView, Linking } from "react-native";
-import colors from "../constants/colors.js"
-import {RowItem, RowSeparator} from "../components/RowItem"
-import {Entypo} from "@expo/vector-icons"
+import React from 'react';
+import { SafeAreaView, ScrollView, Linking, Alert } from 'react-native';
+import { Entypo } from '@expo/vector-icons';
 
-const openURL=(url) =>{
-    Linking.openURL(url).catch(()=>{
-        Alert.alert("Sorry, something went wrong")
-        }
-    )
-}
+import colors from '../constants/colors';
+import { RowItem, RowSeparator } from '../components/RowItem';
 
-const styles =StyleSheet.create({
-    top:{
-        marginTop: 30
-    },
+const openLink = (url) =>
+  Linking.openURL(url).catch(() =>
+    Alert.alert('Sorry, something went wrong.', 'Please try again later.')
+  );
 
-    separator:{
-        backgroundColor: colors.border,
-        height: StyleSheet.hairlineWidth,
-        marginLeft: 20,
-    },
-});
 export default () => {
-    return(
-        <SafeAreaView style={ {flex: 1 } }>
-            <ScrollView >
-            <View style={styles.top}/>
-            {/* <TouchableOpacity style={styles.row}>
-                <Text style={styles.text}>Themes</Text>
-                <Entypo name="chevron-right" size={20} color={colors.blue}/>
-            </TouchableOpacity> */}
-            <RowItem 
-            text="Themes"
-            onPress={ () => openURL("httpsmhb://learn.halndlebarlabs.com/p/react-native-build-a-currency-converter")}
-            rightIcon ={
-                <Entypo name="chevron-right" size={20} color={colors.blue}/>
-            }
-            />
+  return (
+    <SafeAreaView style={{ flex: 1 }}>
+      <ScrollView>
+        <RowItem
+          title="Themes"
+          onPress={() => alert('todo!')}
+          rightIcon={
+            <Entypo name="chevron-right" size={20} color={colors.blue} />
+          }
+        />
 
-            <RowSeparator/>
-            {/* <TouchableOpacity style={styles.row}>
-                <Text style={styles.text}></Text>
-                <Entypo name="export" size={20} color={colors.blue}/>
-            </TouchableOpacity> */}
+        <RowSeparator />
 
-            <RowItem 
-            text="React Native Basics"
-            onPress={ () => alert("test")}
-            rightIcon ={
-                <Entypo name="export" size={20} color={colors.blue}/>
-            }
-            />
+        <RowItem
+          title="React Native Basics"
+          onPress={() =>
+            openLink(
+              'https://learn.reactnativeschool.com/p/react-native-basics-build-a-currency-converter'
+            )
+          }
+          rightIcon={<Entypo name="export" size={20} color={colors.blue} />}
+        />
 
-            <RowSeparator/>
-            {/* <TouchableOpacity style={styles.row}>
-                <Text style={styles.text}>Examples</Text>
-                <Entypo name="export" size={20} color={colors.blue}/>
-            </TouchableOpacity> */}
-            <RowItem 
-            text="Examples"
-            onPress={ () => alert("test2")}
-            rightIcon ={
-                <Entypo name="export" size={20} color={colors.blue}/>
-            }
-            />
-          
-            </ScrollView>
-        </SafeAreaView>
-    );
-}
+        <RowSeparator />
+
+        <RowItem
+          title="React Native by Example"
+          onPress={() => openLink('https://reactnativebyexample.com')}
+          rightIcon={<Entypo name="export" size={20} color={colors.blue} />}
+        />
+      </ScrollView>
+    </SafeAreaView>
+  );
+};
